@@ -4,7 +4,7 @@ const sql = require('mssql');
 const asignationCTRL = {};
 
 asignationCTRL.getEmpleado = async (req, res) => {
-    const resp = await (await connection()).request().query("SELECT * FROM dato_biometrico ");
+    const resp = await (await connection()).request().query("SELECT * FROM dato_biometrico");
     (await connection()).close()
     res.json({ success: true, resp });
 };
@@ -13,6 +13,7 @@ asignationCTRL.valEmpleado = async (req, res) => {
     const currentConnection = (await connection());
     const base64 = await imageToBase64(req.body.urlImg)
     const respDB = await getDatoBiometricoByValor(currentConnection, base64)
+    console.log(base64);
     if (respDB.recordset.length > 0) {
         const datoBiometrico = respDB.recordset[0];
         const respEm = await getEmpleadoById(currentConnection, datoBiometrico.ID_EMPLEADO)
