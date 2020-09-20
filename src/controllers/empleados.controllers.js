@@ -16,12 +16,12 @@ asignationCTRL.valEmpleado = async (req, res) => {
     
     if (respDB.recordset.length > 0) {
         const datoBiometrico = respDB.recordset[0];
-        console.log(datoBiometrico,respDB,respEm);
+        
         const respEm = await getEmpleadoById(currentConnection, datoBiometrico.id_empleado)
-        console.log("hola soy un texto",datoBiometrico,respDB,respEm);
+        console.log("hola soy un texto",respEm);
         if (respEm.recordset.length > 0) {
             if (validarDatos(req.body.day, respEm.recordset[0])) {
-                res.json({ success: true });
+                res.json({ success: true,msg:'Acceso permitido' });
             } else res.json({ success: false, msg: "No puedes acceder este dia" });
         } else res.json({ success: false, msg: "No existe registro de este usuario en la BD." });
     } else res.json({ success: false, msg: "Los datos no existen en la db." });
