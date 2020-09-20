@@ -1,7 +1,7 @@
 
 const endPoint = "https://reconocedorderostros.cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise"
 const key = "5c7bc0e45f49490f8af52e4e8ef83fd1"
-const conexion ="http://localhost:8080"
+const conexion ="https://registroparcial.azurewebsites.net/ingre/api/DatosBiome"
 document.getElementById("buscar").addEventListener("click", () => {
     let urlImg = document.getElementById("urlImg").value
     fetch(endPoint, {
