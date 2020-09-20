@@ -17,7 +17,7 @@ asignationCTRL.valEmpleado = async (req, res) => {
     if (respDB.recordset.length > 0) {
         const datoBiometrico = respDB.recordset[0];
         console.log(datoBiometrico,respDB,respEm);
-        const respEm = await getEmpleadoById(currentConnection, datoBiometrico.ID_EMPLEADO)
+        const respEm = await getEmpleadoById(currentConnection, datoBiometrico.id_empleado)
         console.log("hola soy un texto",datoBiometrico,respDB,respEm);
         if (respEm.recordset.length > 0) {
             if (validarDatos(req.body.day, respEm.recordset[0])) {
@@ -30,11 +30,11 @@ asignationCTRL.valEmpleado = async (req, res) => {
 
 const getDatoBiometricoByValor = async (currentConnection, valor) => await currentConnection.request()
     .input('imagen', sql.VarChar, valor)
-    .query(`SELECT * FROM dato_biometrico  WHERE VALOR = @imagen`);
+    .query(`SELECT * FROM dato_biometrico  WHERE valor = @imagen`);
 
 const getEmpleadoById = async (currentConnection, id) => await currentConnection.request()
     .input('id', sql.Int, id)
-    .query(`SELECT * FROM Empleado WHERE ID_EMPLEADO = @id`);
+    .query(`SELECT * FROM Empleado WHERE id_empleado = @id`);
 
 const validarDatos = (day, empleado) => {
     const lastDPINumber = parseInt(empleado.DPI.toString().slice(empleado.DPI.length - 1))
