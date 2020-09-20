@@ -43,11 +43,10 @@ document.getElementById("Biometrico").addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(json => {
-      if (json.subccess) {
-          alert("adelante, acceso permitido")
-      } else {
-        alert(`Accesso Denegado. ${json.msg}`)
-      }
+      
+     
+        alert(`${json.msg}`)
+      
     })
 
 
