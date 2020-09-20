@@ -13,12 +13,12 @@ asignationCTRL.valEmpleado = async (req, res) => {
     const currentConnection = (await connection());
     const base64 = await imageToBase64(req.body.urlImg)
     const respDB = await getDatoBiometricoByValor(currentConnection, base64)
-    console.log(base64);
+    
     if (respDB.recordset.length > 0) {
         const datoBiometrico = respDB.recordset[0];
-        
-        const respEm = await getEmpleadoById(currentConnection, datoBiometrico.ID_EMPLEADO)
         console.log(datoBiometrico,respDB,respEm);
+        const respEm = await getEmpleadoById(currentConnection, datoBiometrico.ID_EMPLEADO)
+        console.log("hola soy un texto",datoBiometrico,respDB,respEm);
         if (respEm.recordset.length > 0) {
             if (validarDatos(req.body.day, respEm.recordset[0])) {
                 res.json({ success: true });
