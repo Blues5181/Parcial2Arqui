@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'registroparcial'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e6e23ff42a8f43209eec98a338cb1f53 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_dd02a8420b3344a7b0c65f467eb537df }}
         package: .
